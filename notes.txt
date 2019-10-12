@@ -1,0 +1,54 @@
+This collection of files contains Mathematica notebooks, C source code, bash scripts and Gnuplot scripts used to illustrate calculations in Johnston & Jones, "Closed-form stochastic solutions for non-equilibrium dynamics and inheritance of cellular components over many cell divisions", to appear in Proc. Roy. Soc. A (2015). Please cite this article if you make use of this code in a publication.
+
+The layout is as follows, with different aspects of the project divided into different subfolders. Part0/ demonstrates the use of recurrence relation solutions which are used throughout the project. Each of Part1/-Part4/ then combines analysis in Mathematica with stochastic simulation in C to produce one of the figures in the manuscript (Part1/ produces Fig. 2 ... Part4/ produces Fig. 5; Fig. 1 is a drawn illustration). The code is commented to explain the detailed implementations; a summary of each file follows below.
+
+This package is provided with the output data from the code included, to remove the need for some moderately expensive computation, and in case the reader does not have access to Mathematica.
+
+Part0/
+part0-recurrences.nb
+  Recurrence relations of general use throughout the project.
+
+Part1/
+part1-binomial.nb
+  BID generating function with binomial partitioning at divisions.
+part1-subtractive.nb
+  BID generating function with subtractive partitioning at divisions.
+part1-numeric.c
+  Stochastic simulation to compare theory and analysis.
+part1-plotscr.sh
+  Gnuplot script to compare output of the above. Produces Figure 2.
+
+Part2/
+part2-bottleneck.nb
+  Analytic calculations for the bottleneck model.
+part2-bottleneck.c 
+  Stochastic simulation for the bottleneck model. Takes one command-line parameter {0, 1, 2, 3, 4} determining which parameterisation to use -- facilitates easy parallelisation of this code.
+part2-makecurve.sh
+  Summarises the output of part2-bottleneck.c to yield a plottable file containing CVs for different bottleneck magnitudes.
+part2-bneckplot.sh 
+  Gnuplot script to compare output of the above. Produces Figure 3.
+
+Part3/
+part3-binomial.nb
+  Performs generating function analysis of relaxed replication model with binomial partitioning. Gets summary statistics, distributional details, and various other features.
+part3-subtractive.nb
+  Performs generating function analysis of relaxed replication model with subtractive partitioning. 
+part3-simbinomial.c
+  Simulates relaxed replication with binomial partitioning.
+part3-simsubtractive.c
+  Simulates relaxed replication with subtractive partitioning.
+gillespietmp.h
+  Header file containing several functions to allow general Gillespie simulation, used by the above files to simulate the system.
+relaxed.h
+  Header file containing some preamble to set up the specific simulations used above in that Gillespie framework.
+part3-plotall.sh
+  Gnuplot script to compare output of the above. Produces Figure 4.
+
+Part4/
+part4-numerics.nb
+  Calculation of generating functions recursed over a small number of various cell divisions.
+part4-simulate.c 
+  Stochastic simulation of behaviour with various partitioning types.
+part4-numericsplot.sh
+  Gnuplot script to compare output of the above. Produces Figure 5.
+
